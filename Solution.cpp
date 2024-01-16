@@ -50,6 +50,16 @@ class Solution{
     }
 
 
+//Problem 3: find missing number in array
+  public:
+    int missingNumber(vector<int>& array, int n) {
+        int sum=(n * (n+1))/2;
+        for(int i=0;i<array.size();i++) {
+            sum-=array[i];
+        }
+        return sum;
+    }
+
 
 
 
