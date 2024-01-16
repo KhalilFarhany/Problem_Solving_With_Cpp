@@ -123,6 +123,18 @@ public:
         return false;
     }
 
+//Problem 6: remove the duplicates such that each unique element appears only once and return sorted
+public:
+    void removeDuplicates(vector<int>&nums) {
+        sort(nums.begin(), nums.end());
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] == nums[i - 1])
+            {
+                nums.erase(nums.begin() + i, nums.begin() + i + 1);
+                i--;
+            }
+        }
+    }
 
 };
 
