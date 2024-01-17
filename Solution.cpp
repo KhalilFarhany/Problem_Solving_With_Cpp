@@ -136,5 +136,53 @@ public:
         }
     }
 
+
+/*Problem 7: Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+You may not alter the values in the list's nodes, only nodes themselves may be changed.*/
+public:
+    int count(ListNode* head) {
+        int count=0;
+        while(head != NULL) {
+            count++;
+            head=head->next;
+        }
+        return count;
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* N=NULL;
+        ListNode* tmp=head;
+        ListNode* newHead=tmp;
+        vector<ListNode*>v;
+
+        while(tmp!= NULL) {
+            int kTmp=k;
+            if(count(tmp)>=k){
+                while(kTmp-- && tmp !=NULL) {
+                    newHead=tmp;
+                    tmp=tmp->next;
+                    newHead->next=N;
+                    N=newHead;
+                }
+                v.push_back(newHead);
+                N=NULL;
+            }
+            else{
+                 v.push_back(tmp);
+                 break;
+            }  
+        }
+       
+
+        for(int i=0;i<v.size()-1;i++) {
+            tmp=v[i];
+            while(tmp->next != NULL) {
+                tmp=tmp->next;
+            }
+            tmp->next=v[i+1];
+        }
+        return v[0];
+}
+
 };
 
