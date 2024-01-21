@@ -214,5 +214,29 @@ public:
             return res;
         }
 
+//Problem 10: Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+public:
+    int isValid(string str) {
+            stack <char> st ;
+            int i=0;
+            while(i<str.length()) {
+                if(str[i] == '{' || str[i] == '[' || str[i]=='(') 
+                    st.push(str[i]);
+                else if(!st.empty()) {
+                    char top=st.top();
+                    if((top=='{' && str[i]=='}') || (top=='[' && str[i]==']') || (top=='(' && str[i]==')'))
+                        st.pop();
+                    else 
+                        return false;
+                }
+                else return false;
+                i++;
+            }
+            if(st.empty())
+                return true;
+            return false;
+    }
+
+
 };
 
