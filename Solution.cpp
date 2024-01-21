@@ -257,5 +257,17 @@ You may not alter the values in the list's nodes, only nodes themselves may be c
         return head;
     } 
 
+//Problem 12:  swap every two adjacent nodes and return its head
+    ListNode* swapPairs(ListNode* head) {
+      ListNode* tmp=head;
+      while(tmp!=NULL && tmp->next !=NULL) {
+          int val=tmp->val;
+          tmp->val=tmp->next->val;
+          tmp->next->val=val;
+          tmp=tmp->next->next;
+      }  
+      return head;
+    }
+
 };
 
