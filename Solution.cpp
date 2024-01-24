@@ -269,5 +269,21 @@ You may not alter the values in the list's nodes, only nodes themselves may be c
       return head;
     }
 
+//Problem 13:  Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+int strStr(string haystack, string needle) {
+        for(int i=0;i<haystack.length();i++) {
+            int j=0;
+            int k=i;
+            while(haystack[i] == needle[j] && j<needle.length() && i<haystack.length()) {
+                 j++;
+                 i++;
+            }
+            if(j>=needle.length()) 
+                 return i-needle.length();
+            i=k;
+        }
+        return -1;
+    }
+
 };
 
