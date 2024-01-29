@@ -327,7 +327,6 @@ vector<int> plusOne(vector<int>& digits) {
        return digits;
     }
 
-};
 
 //Problem 16: Given two binary strings a and b, return their sum as a binary string.
 
@@ -369,3 +368,26 @@ vector<int> plusOne(vector<int>& digits) {
         return s;
     }
 
+//Problem 17: Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+ListNode* deleteDuplicates(ListNode* head) {
+        if(head == NULL) 
+            return head;
+        ListNode* tmp=head;
+        ListNode* eff;
+        while(tmp->next != NULL) {
+            if(tmp->val == tmp->next->val) {
+                eff=tmp->next;
+                tmp->next=eff->next;
+                delete eff;
+            }
+            else {
+                tmp=tmp->next;
+            }
+        }
+        return head;
+        
+
+
+    }
+
+};
