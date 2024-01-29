@@ -306,6 +306,26 @@ int lengthOfLastWord(string s) {
     }
 
 
+//Problem 15: You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.Increment the large integer by one and return the resulting array of digits.
+vector<int> plusOne(vector<int>& digits) {
+       int rest=1;
+       int i=digits.size()-1;
+       int sum;
+       while(i>=0 && rest>0) {
+           int sum=digits[i]+rest;
+           rest=sum/10;
+           if(rest>0)
+              digits[i]=sum%10;
+           else{
+               digits[i]++;
+           }
+           i--;
+       }
+       if(rest>0) {
+           digits.insert(digits.begin(),rest);
+       }
+       return digits;
+    }
 
 };
 
