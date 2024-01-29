@@ -285,5 +285,27 @@ int strStr(string haystack, string needle) {
         return -1;
     }
 
+//Problem 14: Given a string s consisting of words and spaces, return the length of the last word in the string. A word is a maximal substring consisting of non-space characters only. 
+int lengthOfLastWord(string s) {
+        bool isFirst=true;
+        int i=s.length()-1;
+        int last=-1;
+        int first=-1;
+        while(i>=0) {
+            if(isFirst && s[i] != ' ') {
+                last=i;
+                isFirst=false;
+            }
+            if(s[i] != ' ' && (i==0 || s[i-1]==' ')){
+                first=i;
+                break;
+            }
+            i--;
+        }
+        return s.substr(first,last-first+1).length();
+    }
+
+
+
 };
 
