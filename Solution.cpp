@@ -329,3 +329,43 @@ vector<int> plusOne(vector<int>& digits) {
 
 };
 
+//Problem 16: Given two binary strings a and b, return their sum as a binary string.
+
+ string addNumberOfZero(string s,int numberOfZero) {
+        for(int i=0;i<numberOfZero;i++) {
+            s = '0'+s;
+        }
+        return s;
+    }
+    string addBinary(string a, string b) {
+        if(a.length()>b.length()) 
+            b=addNumberOfZero(b,a.length()-b.length());
+        else 
+            a=addNumberOfZero(a,b.length()-a.length());
+        int rest=0;
+        string s="";
+        for(int i=a.length()-1;i>=0;i--) {
+            int sum=int(a[i]-48)+int(b[i]-48)+rest;
+            if(sum==2) {
+                rest=1;
+                s='0' + s;
+            }
+            else  if(sum==3) {
+                rest=1;
+                s='1' + s;
+            }
+            else  {
+                rest=0;
+                if(sum==1)  
+                   s='1' + s;
+                else
+                   s='0' + s; 
+            }
+        }
+
+        if(rest==1) 
+            s='1' + s; 
+        
+        return s;
+    }
+
