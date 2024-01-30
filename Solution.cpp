@@ -460,4 +460,24 @@ int singleNumber(vector<int>& nums) {
         }
         return nums[nums.size()-1];
     }
+
+
+//Problem 21: Given two strings s and t, return true if t is an anagram of s, and false otherwise. An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. 
+//s and t consist of lowercase English letters.
+bool isAnagram(string s, string t) {
+        int lenS=s.length();
+        int lenT=t.length();
+        if(lenS != lenT) 
+            return false;
+        int arr[26]={0};
+        for(int i=0;i<lenS;i++) {
+            arr[s[i]-97]++;
+            arr[t[i]-97]--;
+        }
+        for(int i=0;i<26;i++) {
+            if(arr[i] != 0)
+                return false;
+        }
+        return true;
+    }
 };
