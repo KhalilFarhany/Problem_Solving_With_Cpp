@@ -481,3 +481,18 @@ bool isAnagram(string s, string t) {
         return true;
     }
 };
+
+
+//Problem 22: Given an integer num, repeatedly add all its digits until the result has only one digit, and return it. and num >= 0
+int addDigits(int num) {
+        while(num>9) {
+            int tmp=0;
+            while(num > 9) {
+                tmp+=num % 10;
+                num=num / 10;
+            }
+            tmp+=num;
+            num=tmp;
+        }
+        return num;
+    }
