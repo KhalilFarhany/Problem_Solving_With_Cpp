@@ -411,4 +411,19 @@ ListNode* deleteDuplicates(ListNode* head) {
         else return 0;
     }
 
+//Problem 19: A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+bool isPalindrome(string s) {
+        string s2="";
+        for(int i=0;i<s.length();i++) {
+            if(s[i]>96 && s[i]<123 || s[i]>47 && s[i]<58) 
+                s2+=s[i];
+            else if(s[i]>64 && s[i]<91)
+                s2+=s[i]+32;
+        }
+        for(int i=0;i<s2.length()/2;i++) {
+            if(s2[i] != s2[s2.length()-1-i])
+                return false;
+        }
+        return true;
+    }
 };
