@@ -426,7 +426,7 @@ bool isPalindrome(string s) {
         }
         return true;
     }
-    
+
 //Problem 19: other method
 bool isPalindrom(string s) {
         int i=0;
@@ -446,5 +446,18 @@ bool isPalindrom(string s) {
             j--;
         }
         return true;
+    }
+
+
+//Problem 20: Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+int singleNumber(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-1;i++) {
+            if(nums[i] != nums[i+1]) {
+                return nums[i];
+            }
+            i++;
+        }
+        return nums[nums.size()-1];
     }
 };
