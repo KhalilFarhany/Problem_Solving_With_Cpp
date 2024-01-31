@@ -483,7 +483,7 @@ bool isAnagram(string s, string t) {
 };
 
 
-//Problem 22: Given an integer num, repeatedly add all its digits until the result has only one digit, and return it. and num >= 0
+//Problem 22: Given an integer num, repeatedly add all its digits until the result has only one digit, and return it. and num >= .0
 int addDigits(int num) {
         while(num>9) {
             int tmp=0;
@@ -495,4 +495,28 @@ int addDigits(int num) {
             num=tmp;
         }
         return num;
+    }
+
+
+//Problem 23: Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+ ListNode* removeElements(ListNode* head, int val) {
+        ListNode* curr=head;
+        ListNode* prev=nullptr;
+        while(curr != nullptr) {
+            if(curr->val == val) {
+                if(prev==nullptr) {
+                    head=curr->next;
+                    delete curr;
+                    curr=head;
+                } else {
+                    curr=curr->next;
+                    delete prev->next;
+                    prev->next=curr;
+                }
+            } else {
+                prev=curr;
+                curr=curr->next;
+            }
+        }
+        return head;
     }
