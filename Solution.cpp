@@ -499,7 +499,7 @@ int addDigits(int num) {
 
 
 //Problem 23: Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
- ListNode* removeElements(ListNode* head, int val) {
+ListNode* removeElements(ListNode* head, int val) {
         ListNode* curr=head;
         ListNode* prev=nullptr;
         while(curr != nullptr) {
@@ -519,4 +519,33 @@ int addDigits(int num) {
             }
         }
         return head;
+    }
+
+
+//Problem 24: You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+ int convertListToNumber(ListNode* l) {
+        int res=0;
+        while(l != nullptr){
+            res*=10;
+            res+=l->val;
+            l=l->next;
+        }
+        return res;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        int sum=convertListToNumber(l1)+convertListToNumber(l2);
+        ListNode* l3=nullptr;
+        ListNode* tmp=nullptr;
+        if(sum == 0)
+        {
+            l3=new ListNode(0);
+            l3->next=nullptr;
+        }
+        while(sum != 0) {
+            l3=new ListNode(sum%10);
+            sum /= 10;
+            l3->next=tmp;
+            tmp=l3;
+        }
+        return l3;
     }
