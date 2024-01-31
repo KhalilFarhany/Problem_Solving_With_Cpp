@@ -566,4 +566,45 @@ ListNode* removeElements(ListNode* head, int val) {
         }
         return head2;
     }
-    
+
+
+//Problem 24 (method 2):  You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        l1=reverseList(l1);
+        l2=reverseList(l2);
+        
+        ListNode* tmp1=l1;
+        ListNode* tmp2=l2;
+        ListNode* result=nullptr;
+        ListNode* newNode;
+        
+        int rest=0;
+        while(tmp1 != nullptr || tmp2 != nullptr) {
+            int sum=rest;
+            if(tmp1!=nullptr){
+                sum+=tmp1->val;
+                tmp1=tmp1->next;
+            }
+            if(tmp2!=nullptr) {
+                sum+=tmp2->val;
+                tmp2=tmp2->next;
+            }
+            if(sum>9) {
+                sum %= 10;
+                rest = 1;
+            }
+            else 
+                rest=0;
+            
+            newNode = new ListNode(sum);
+
+            newNode->next=result;
+            result=newNode;
+        }
+        if(rest != 0) {
+            newNode = new ListNode(rest);
+            newNode->next=result;
+            result=newNode;
+        }
+        return result;
+    }
