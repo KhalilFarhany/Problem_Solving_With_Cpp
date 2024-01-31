@@ -5,7 +5,10 @@ using namespace std;
 struct ListNode {
       int val;
       ListNode *next;
- };
+      ListNode() : val(0), next(nullptr) {}
+      ListNode(int x) : val(x), next(nullptr) {}
+      ListNode(int x, ListNode *next) : val(x), next(next) {}
+  };
 
 //Definition for a binary tree node.
  struct TreeNode {
@@ -549,3 +552,18 @@ ListNode* removeElements(ListNode* head, int val) {
         }
         return l3;
     }
+
+//Problem 25:Given the head of a singly linked list, reverse the list, and return the reversed list.
+ ListNode* reverseList(ListNode* head) {
+        ListNode* tmp;
+        ListNode* head2=nullptr;
+        ListNode* curr=head;
+        while(curr != nullptr) {
+            tmp=curr;
+            curr=curr->next;
+            tmp->next=head2;
+            head2=tmp;
+        }
+        return head2;
+    }
+    
