@@ -483,7 +483,6 @@ bool isAnagram(string s, string t) {
         }
         return true;
     }
-};
 
 
 //Problem 22: Given an integer num, repeatedly add all its digits until the result has only one digit, and return it. and num >= .0
@@ -608,3 +607,15 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         }
         return result;
     }
+
+//Problem 26: Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int>result;
+        for(int i=0;i<nums1.size();i++) {
+            if(find(nums2.begin(),nums2.end(), nums1[i]) != nums2.end() && find(result.begin(),result.end(),nums1[i]) == result.end())
+            result.push_back(nums1[i]);
+        }
+        return result;
+    }
+
+};
