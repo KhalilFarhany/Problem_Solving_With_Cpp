@@ -631,4 +631,20 @@ vector<int> sortBySelection(vector<int>& nums) {
 		    nums[min] = tmp;
 	    }
     }
+
+//insertion sort
+vector<int> insertionSort(vector<int>& nums) {
+	for (int i = 1; i < nums.size(); i++) {
+		int nb = nums[i];
+		int j = i-1;
+		while (nb < nums[j] && j >= 0 ) {
+			nums[j+1] = nums[j];
+			j--;
+		}
+		nums[j + 1] = nb;
+	}
+}
+
+
 };
+
