@@ -618,4 +618,17 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         return result;
     }
 
+
+//Problem 27: sort by selection
+vector<int> sortBySelection(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); i++) {
+		    int min = i;
+		    for (int j = i+1; j < nums.size(); j++) 
+			    if (nums[j] < nums[min])
+				    min = j;
+		    int tmp = nums[i];
+		    nums[i] = nums[min];
+		    nums[min] = tmp;
+	    }
+    }
 };
