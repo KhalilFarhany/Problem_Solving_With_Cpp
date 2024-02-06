@@ -630,6 +630,7 @@ vector<int> sortBySelection(vector<int>& nums) {
 		    nums[i] = nums[min];
 		    nums[min] = tmp;
 	    }
+        return nums;
     }
 
 //insertion sort
@@ -643,8 +644,21 @@ vector<int> insertionSort(vector<int>& nums) {
 		}
 		nums[j + 1] = nb;
 	}
+    return nums;
 }
 
-
+//bubble sorting
+vector<int> bubbleSorting(vector<int>& nums) {
+	for (int i = 0; i < nums.size(); i++) {
+		for (int j = 0; j < nums.size()-1-i; j++) {
+			if (nums[j] > nums[j + 1]) {
+				int tmp = nums[j];
+				nums[j] = nums[j + 1];
+				nums[j + 1] = tmp;
+			}
+		}
+	}
+    return nums;
+}
 };
 
