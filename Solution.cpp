@@ -673,6 +673,19 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         }
         sort(nums1.begin(),nums1.end());
     }
-    
+
+//problem 31: Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+//Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p != nullptr && q != nullptr)
+            if(p->val == q->val)
+                return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+            else 
+                return false;
+        else if(p == nullptr && q == nullptr)
+            return true;
+        else 
+            return false;
+    }
 };
 
