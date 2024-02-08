@@ -687,5 +687,23 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
         else 
             return false;
     }
+
+//Problem 32: Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+//Each letter in magazine can only be used once in ransomNote.
+bool canConstruct(string ransomNote, string magazine) {
+        int arrRansomNote[26]={0};
+        int arrMagazine[26]={0};
+        for(int i=0;i<ransomNote.length();i++) {
+            arrRansomNote[ransomNote[i]-97]++;
+        }
+        for(int i=0;i<magazine.length();i++) {
+            arrMagazine[magazine[i]-97]++;
+        }
+        for(int i=0;i<26;i++) {
+            if(arrRansomNote[i] != 0 && arrRansomNote[i] > arrMagazine[i]) 
+                return false;
+        }
+        return true;
+    }
 };
 
