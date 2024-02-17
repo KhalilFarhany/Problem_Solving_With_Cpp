@@ -691,20 +691,20 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 //Problem 32: Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
 //Each letter in magazine can only be used once in ransomNote.
 bool canConstruct(string ransomNote, string magazine) {
-        int arrRansomNote[26]={0};
-        int arrMagazine[26]={0};
+        int arr[26]={0};
         for(int i=0;i<ransomNote.length();i++) {
-            arrRansomNote[ransomNote[i]-97]++;
+            arr[ransomNote[i]-97]--;
         }
         for(int i=0;i<magazine.length();i++) {
-            arrMagazine[magazine[i]-97]++;
+            arr[magazine[i]-97]++;
         }
         for(int i=0;i<26;i++) {
-            if(arrRansomNote[i] != 0 && arrRansomNote[i] > arrMagazine[i]) 
+            if(arr[i]<0) 
                 return false;
         }
         return true;
-    }
+}
+
 //Problem 32(method 2): Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
 //Each letter in magazine can only be used once in ransomNote.
 bool canConstruct2(string ransomNote, string magazine) {
@@ -717,5 +717,22 @@ bool canConstruct2(string ransomNote, string magazine) {
         }
         return true;     
     }
+    
+//Problem 33: Binary Search 
+int search(vector<int>& nums, int target) {
+        int i=0;
+        int j=nums.size()-1;
+        while(i<=j) {
+            int mid=(i+j)/2;
+            if(nums[mid]==target) 
+                return mid;
+            else if(target>nums[mid]) 
+                i=mid+1;
+            else
+                j=mid-1;
+        }
+        return -1;
+    }
 };
+
 
