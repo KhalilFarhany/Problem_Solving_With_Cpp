@@ -750,4 +750,14 @@ string reverseStringWithStack(string str) {
     return str;
 }
 
+//Problem 35: reverse String 
+string reverseString(string str) {
+    for (int i = 0; i < str.length()/2; i++) {
+        char c = str[i];
+        str[i] = str[str.length() - 1 - i];
+        str[str.length() - 1 - i] = c;
+    }
+    return str;
+}
+
 };
