@@ -760,4 +760,29 @@ string reverseString(string str) {
     return str;
 }
 
+
+//Problem 36: You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+//Evaluate the expression. Return an integer that represents the value of the expression.
+int calc(int a,int b,char c) {
+        if(c=='+') return a+b;
+        if(c=='-') return a-b;
+        if(c=='*') return a*b;
+        return a/b;
+    } 
+    int evalRPN(vector<string>& tokens) {
+        stack<int>st;
+        for(string i : tokens) {
+            if(i.size()==1 && (i[0]== '+' || i[0]== '-' || i[0]== '*' || i[0]== '/')){
+                int b=st.top();
+                st.pop();
+                int a=st.top();
+                st.pop();
+                st.push(calc(a,b,i[0]));
+            }
+            else {
+                st.push(stoi(i));
+            } 
+        }
+        return st.top();
+    }
 };
