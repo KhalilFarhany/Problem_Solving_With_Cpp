@@ -717,7 +717,7 @@ bool canConstruct2(string ransomNote, string magazine) {
         }
         return true;     
     }
-    
+
 //Problem 33: Binary Search 
 int search(vector<int>& nums, int target) {
         int i=0;
@@ -733,6 +733,21 @@ int search(vector<int>& nums, int target) {
         }
         return -1;
     }
+
+
+//Problem 34: reverse String with stack
+string reverseStringWithStack(string str) {
+    stack<char>st;
+    for (char i : str) {
+        st.push(i);
+    }
+    int j = 0;
+    while (!st.empty()) {
+        str[j] = st.top();
+        j++;
+        st.pop();
+    }
+    return str;
+}
+
 };
-
-
