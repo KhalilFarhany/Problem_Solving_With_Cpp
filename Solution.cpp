@@ -796,4 +796,22 @@ string longestCommonPrefix(vector<string>& strs) {
     }
     return prefix;
 }
+
+//Problem 37: Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+int mySqrt(int x) {
+       long start=0; 
+       long end=x; 
+       while(start+1 < end) {
+           long mid = (end + start)/2;
+           if(mid * mid == x) 
+            return (int)mid;
+           else if(mid * mid < x) 
+            start = mid;
+           else 
+            end = mid;
+       }
+       if(end * end == x )
+        return (int)end;
+       return (int)start;
+    }
 };
