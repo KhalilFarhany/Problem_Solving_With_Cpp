@@ -814,4 +814,34 @@ int mySqrt(int x) {
         return (int)end;
        return (int)start;
     }
+
+    
+//Problem 38: Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.
+string removeKdigits(string num, int k) {
+    if (k >= num.length()) return "0";
+    deque<int>dq;
+
+    for (int i = 0; i < num.length(); i++) {
+        int curr = num[i] - '0';
+        while (!dq.empty() && curr < dq.back() && k) {
+            dq.pop_back();
+            k--;
+        }
+        dq.push_back(curr);
+    }
+    while (!dq.empty() && dq.front()==0) {
+        dq.pop_front();
+    }
+    while (!dq.empty() && k--) {
+        dq.pop_back();
+    }
+    string str = "";
+    while (!dq.empty())
+    {
+        str += dq.front() + '0';
+        dq.pop_front();
+    }
+    if (str == "") return "0";
+    return str;
+}
 };
