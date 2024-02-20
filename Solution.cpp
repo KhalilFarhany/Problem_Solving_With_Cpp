@@ -815,7 +815,7 @@ int mySqrt(int x) {
        return (int)start;
     }
 
-    
+
 //Problem 38: Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.
 string removeKdigits(string num, int k) {
     if (k >= num.length()) return "0";
@@ -844,4 +844,40 @@ string removeKdigits(string num, int k) {
     if (str == "") return "0";
     return str;
 }
+
+
+//Problem 39: You are given an array nums of n positive integers.
+//You can perform two types of operations on any element of the array any number of times:
+//If the element is even, divide it by 2.
+//for example, if the array is [1,2,3,4], then you can do this operation on the last element, and the array will be [1,2,3,2].
+//If the element is odd, multiply it by 2.
+//For example, if the array is [1,2,3,4], then you can do this operation on the first element, and the array will be [2,2,3,4].
+//The deviation of the array is the maximum difference between any two elements in the array.
+//Return the minimum deviation the array can have after performing some number of operations.
+int minimumDeviation(vector<int> nums) {
+    set<int>st;
+    for (int i = 0; i < nums.size(); i++) {
+        int val=nums[i];
+        if(val%2 != 0)
+        {
+            val *=2;
+        }
+        st.insert(val);
+    }
+    int mn=INT_MAX;
+    int diff;
+    while(1) {
+        auto last=prev(st.end());
+        auto first=st.begin();
+        diff=*last - (*first);
+        mn=min(mn,diff);
+        if(*last%2 == 0) {
+            int val=*last;
+            st.erase(last);
+            st.insert(val/2);
+        }
+        else break;
+    }
+    return mn;
+    } 
 };
