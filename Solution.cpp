@@ -882,7 +882,7 @@ int minimumDeviation(vector<int> nums) {
     } 
 
 
-//Problem 40: 
+//Problem 40: Given two integer arrays pushed and popped each with distinct values, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack, or false otherwise.
 bool validateStackSequences(vector<int>pushed, vector<int>popped) {
     stack<int>st;
     int i = 0;
@@ -902,4 +902,24 @@ bool validateStackSequences(vector<int>pushed, vector<int>popped) {
     }
     return st.empty();
 }
+
+//Problem 41:Given a string s, find the length of the longest substring without repeating characters.
+int lengthOfLongestSubstring(string s) {
+        int mx=0;
+        string str="";
+        for(int i=0;i<s.length();i++) {
+            while(i<s.length() && str.find(s[i])==string::npos) 
+            {
+                    str+=s[i];
+                    i++;
+            }
+            int len = str.length();
+            if ( len > mx)
+                mx = len;
+            if(i<s.length())
+                str=str.substr(str.find(s[i])+1);
+            i--;
+        }
+        return mx;
+    }
 };
