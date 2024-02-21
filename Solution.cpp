@@ -880,4 +880,26 @@ int minimumDeviation(vector<int> nums) {
     }
     return mn;
     } 
+
+
+//Problem 40: 
+bool validateStackSequences(vector<int>pushed, vector<int>popped) {
+    stack<int>st;
+    int i = 0;
+    int j = 0;
+    while (i < pushed.size() || j < popped.size()) {
+        if (!st.empty() && st.top() == popped[j]) {
+            st.pop();
+            j++;
+        }
+        else if (i >= pushed.size()) {
+            return false;
+        }
+        else {
+            st.push(pushed[i]);
+            i++;
+        }
+    }
+    return st.empty();
+}
 };
