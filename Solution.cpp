@@ -936,4 +936,24 @@ int majorityElement(vector<int>& nums) {
         }
         return 0;
     }
+
+//Problem 43 (method 2) : Given an array nums of size n, return the majority element.
+//The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+int majorityElementM2(vector<int> nums) {
+    sort(nums.begin(), nums.end());
+    int count = 0;
+    int majority_element = nums[0];
+    for (int i = 0; i < nums.size(); i++) {
+        if (count == 0) {
+            majority_element = nums[i];
+        }
+        if (nums[i] == majority_element) {
+            count++;
+        }
+        else {
+            count--;
+        }
+    }
+    return majority_element;
+}
 };
