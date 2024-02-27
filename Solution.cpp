@@ -956,4 +956,14 @@ int majorityElementM2(vector<int> nums) {
     }
     return majority_element;
 }
+
+
+//Problem 44 : Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+bool containsDuplicate(vector<int> nums) {
+        sort(nums.begin(),nums.end());
+        for(vector<int>::iterator  it=nums.begin();it != prev(nums.end());it++) {
+            if(*it == *(it+1)) return true;
+        }
+        return false;
+    }
 };
