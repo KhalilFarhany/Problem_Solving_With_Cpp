@@ -966,4 +966,13 @@ bool containsDuplicate(vector<int> nums) {
         }
         return false;
     }
+
+//Problem 45 : Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+int missingNumber(vector<int>& nums) {
+        int sum=accumulate(nums.begin(),nums.end(),0);
+
+        int mid= nums.size() * (nums.size()+1) /2;
+
+        return mid - sum; 
+    }
 };
