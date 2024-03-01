@@ -1041,4 +1041,43 @@ string maximumOddBinaryNumber(string s) {
         }
         return res+'1';
     }
+
+//problem 48 : Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
+//Return any possible rearrangement of s or return "" if not possible.
+string reorganizeString(string s) {
+    vector<int>v(26, 0);
+    for (char& c : s) {
+       v[c - 'a']++;
+    }
+    priority_queue<pair<int, char>>pq;
+    for (int i = 0; i < 26;i++) {
+        if (v[i])
+            pq.push({ v[i],'a' + i });
+    }
+    string ans = "";
+    while (!pq.empty()) {
+        pair<int, char>t = pq.top();
+        pq.pop();
+        if (pq.empty() && t.first>1) {
+            return "";
+        }
+        
+        ans += t.second;
+        if (!pq.empty())
+        {
+            pair<int, char>t2 = pq.top();
+            pq.pop();
+            ans += t2.second;
+            if (t2.first - 1) {
+                t2.first--;
+                pq.push(t2);
+            }
+        }
+        if (t.first - 1) {
+            t.first--;
+            pq.push(t);
+        }
+    }
+    return ans;
+}
 };
