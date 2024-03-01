@@ -1020,4 +1020,25 @@ vector<vector<int>> merge(vector<vector<int>> intervals) {
     }
     return intervals;
     }
+
+//Problem 47 : You are given a binary string s that contains at least one '1'.
+//You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number that can be created from this combination.
+//Return a string representing the maximum odd binary number that can be created from the given combination.
+string maximumOddBinaryNumber(string s) {
+        string res="";
+        int count =0;
+        for(char& i : s) {
+            if(i =='1')
+                count++;
+        }
+        if(count==0) 
+            return s;
+        for(int i=1;i<count;i++) {
+            res+='1';
+        }
+        for(int i=count;i<s.length();i++) {
+            res+='0';
+        }
+        return res+'1';
+    }
 };
