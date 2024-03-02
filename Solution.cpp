@@ -1080,4 +1080,14 @@ string reorganizeString(string s) {
     }
     return ans;
 }
+
+//problem 49 : Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+vector<int> sortedSquares(vector<int>& nums) {
+        vector<int>res;
+        for(int & i : nums) {
+            res.push_back(pow(i,2));
+        }
+        sort(res.begin(),res.end());
+        return res;
+    }
 };
