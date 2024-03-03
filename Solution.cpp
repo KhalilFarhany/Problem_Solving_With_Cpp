@@ -1090,4 +1090,18 @@ vector<int> sortedSquares(vector<int>& nums) {
         sort(res.begin(),res.end());
         return res;
     }
+
+//problem 50 : Given the head of a singly linked list, reverse the list, and return the reversed list.
+ListNode* reverseListUsingRecursion(ListNode* head) {
+        if(head == NULL || head->next == NULL) return head;
+        ListNode* prev = NULL;
+        ListNode* h2 = reverseList(head->next);
+        head->next->next = head;
+        head->next=prev;
+        return h2;
+    }
+
+
 };
+
+
