@@ -1101,7 +1101,22 @@ ListNode* reverseListUsingRecursion(ListNode* head) {
         return h2;
     }
 
+//problem 51 : Given the root of a binary tree, return the postorder traversal of its nodes' values.
+ vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>res;
+        if(root != nullptr){
+            vector<int>left=postorderTraversal(root->left);
+            res.insert(res.end(),left.begin(),left.end());
 
+            
+
+            vector<int>right=postorderTraversal(root->right);
+            res.insert(res.end(),right.begin(),right.end());
+
+            res.push_back(root->val);
+        }
+        return res;
+    }
 };
 
 
