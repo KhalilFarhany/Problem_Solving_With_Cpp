@@ -1157,6 +1157,34 @@ int bagOfTokensScore(vector<int>& tokens, int power) {
         }
         return maxScore;
     }
+
+//problem 54 : Given a string s consisting only of characters 'a', 'b', and 'c'. You are asked to apply the following algorithm on the string any number of times:
+//Pick a non-empty prefix from the string s where all the characters in the prefix are equal.
+//Pick a non-empty suffix from the string s where all the characters in this suffix are equal.
+//The prefix and the suffix should not intersect at any index.
+//The characters from the prefix and suffix must be the same.
+//Delete both the prefix and the suffix.
+//Return the minimum length of s after performing the above operation any number of times (possibly zero times).
+int minimumLength(string s) {
+        bool test=true;
+        while(s.size() > 1 && test) {
+            char c1=s[0];
+            char c2=s[s.size()-1];
+            test=false;
+            while(s.size()>0 && s[0] == c2) 
+            {
+                test=true;
+                s.erase(s.begin());
+            }
+            while(s.size()>0 && s[s.size()-1] == c1) 
+            {
+                test=true;
+                s.erase(s.begin()+s.size()-1);
+            }
+        }
+        return s.size();
+    }
+
 };
 
 
