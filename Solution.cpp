@@ -1184,12 +1184,43 @@ int minimumLength(string s) {
         }
         return s.size();
     }
-//Given an integer n, return true if it is a power of four. Otherwise, return false.
+//problem 55 :Given an integer n, return true if it is a power of four. Otherwise, return false.
 //An integer n is a power of four, if there exists an integer x such that n == 4x.
- bool isPowerOfFour(int n) {
+bool isPowerOfFour(int n) {
         if(n==1) return true;
         if(n<1 || n%4!=0) return false;
         return isPowerOfFour(n/4); 
+    }
+
+//problem 56 : You are given an integer array score of size n, where score[i] is the score of the ith athlete in a competition. All the scores are guaranteed to be unique.
+//The athletes are placed based on their scores, where the 1st place athlete has the highest score, the 2nd place athlete has the 2nd highest score, and so on. The placement of each athlete determines their rank:
+//The 1st place athlete's rank is "Gold Medal".
+//The 2nd place athlete's rank is "Silver Medal".
+//The 3rd place athlete's rank is "Bronze Medal".
+//For the 4th place to the nth place athlete, their rank is their placement number (i.e., the xth place athlete's rank is "x").
+//Return an array answer of size n where answer[i] is the rank of the ith athlete. 
+vector<string> findRelativeRanks(vector<int>& score) {
+    priority_queue<pair<int,int>>mp;
+    int n = score.size();
+    for (int i = 0; i < n; i++) {
+        mp.push(make_pair(score[i], i));
+    }
+    vector<string>res(n);
+    int i = 1;
+    while(!mp.empty()) {
+        pair<int, int> p = mp.top();
+        if (i == 1)
+            res[p.second] = "Gold Medal";
+        else if (i == 2)
+            res[p.second] = "Silver Medal";
+        else if (i == 3)
+            res[p.second] = "Bronze Medal";
+        else
+            res[p.second] = to_string(i);
+        i++;
+        mp.pop();
+    }
+    return res;
     }
 
 };
