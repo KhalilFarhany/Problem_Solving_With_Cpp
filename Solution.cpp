@@ -1271,6 +1271,25 @@ bool hasCycle(ListNode *head) {
         }
         return false;
     }
+
+
+//problem 59 : Given the head of a singly linked list, return the middle node of the linked list.
+//If there are two middle nodes, return the second middle node.
+int sizeList(ListNode* head) {
+        int count = 0;
+        while(head != nullptr) {
+            count++;
+            head = head->next;
+        } 
+        return count;
+    }
+    ListNode* middleNode(ListNode* head) {
+        int mid = sizeList(head) / 2;
+        while(mid--) {
+            head=head->next;
+        }
+        return head;
+    }
 };
 
 
