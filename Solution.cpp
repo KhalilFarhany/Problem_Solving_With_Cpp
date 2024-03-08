@@ -1290,6 +1290,26 @@ int sizeList(ListNode* head) {
         }
         return head;
     }
+    
+//problem 60 : You are given an array nums consisting of positive integers.
+//Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
+//The frequency of an element is the number of occurrences of that element in the array. 
+int maxFrequencyElements(vector<int>& nums) {
+       map<int,int>mp;
+       int max = 0;
+       int count=0;
+       for(int & i:nums) {
+           mp[i]++;
+           if(mp[i]>max) {
+               max=mp[i];
+               count=1;
+           }
+           else if(mp[i]==max) {
+               count++;
+           }
+       } 
+       return count*max;
+    }
 };
 
 
