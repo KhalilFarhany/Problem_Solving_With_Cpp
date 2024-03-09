@@ -1325,6 +1325,19 @@ int getCommon(vector<int>& nums1, vector<int>& nums2) {
         }
         return -1;
     }
+
+//Problem 62 : Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+//You must implement a solution with a linear runtime complexity and use only constant extra space.
+int singleNumber(vector<int>& nums) {
+        if(nums.size() == 1) return nums[0];
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-1;i++) {
+            if(nums[i]==nums[i+1]) i+=2;
+            else 
+                return nums[i] ;
+        }
+        return nums[nums.size()-1];
+    }
 };
 
 
