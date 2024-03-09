@@ -1338,6 +1338,23 @@ int singleNumber(vector<int>& nums) {
         }
         return nums[nums.size()-1];
     }
+
+//Problem 62 : Given an integer array nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in any order.
+//You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
+vector<int> singleNumber2(vector<int>& nums) {
+        vector<int>res;
+        unordered_map<int,int>mp;
+        for(int &i:nums) {
+            mp[i]++;
+        } 
+        for(auto &i :mp){
+            if(i.second == 1) {
+                res.push_back(i.first);
+                if(res.size()==2) return res;
+            }
+        }
+        return res;
+    }
 };
 
 
