@@ -1290,7 +1290,7 @@ int sizeList(ListNode* head) {
         }
         return head;
     }
-    
+
 //problem 60 : You are given an array nums consisting of positive integers.
 //Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
 //The frequency of an element is the number of occurrences of that element in the array. 
@@ -1309,6 +1309,21 @@ int maxFrequencyElements(vector<int>& nums) {
            }
        } 
        return count*max;
+    }
+
+
+//Problem 61 : Given two integer arrays nums1 and nums2, sorted in non-decreasing order, return the minimum integer common to both arrays. If there is no common integer amongst nums1 and nums2, return -1.
+//Note that an integer is said to be common to nums1 and nums2 if both arrays have at least one occurrence of that integer.
+int getCommon(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int,int>mp;
+        for(int &i:nums1) {
+            mp[i]++;
+        }
+        for(int &i:nums2) {
+            if(mp[i]>0) 
+                return i;
+        }
+        return -1;
     }
 };
 
