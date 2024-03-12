@@ -1415,7 +1415,39 @@ string customSortString(string order, string s) {
         }
         return res;
     }
-    
+
+//Problem 64 : Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
+//After doing so, return the head of the final linked list.  You may return any such answer.
+//(Note that in the examples below, all sequences are serializations of ListNode objects.)    
+ListNode* removeZeroSumSublists(ListNode* head) {
+        ListNode* prec=nullptr;
+        ListNode* curr=head;
+        while(curr) {
+            ListNode* tmp=curr;
+            int s=0;
+            bool isEntry=false;
+            while(tmp) {
+                s+=tmp->val;
+                if(s==0) {
+                    isEntry=true;
+                    if(prec==nullptr) {
+                        head=tmp->next;
+                        curr=head;
+                    } else {
+                       curr=prec;
+                       curr->next=tmp->next; 
+                    }
+                    break;
+                }
+                tmp=tmp->next;
+            }
+            if(!isEntry) {
+                prec=curr;
+                curr=curr->next;
+            }
+        }
+        return head;
+}
 };
 
 
