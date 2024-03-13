@@ -1448,6 +1448,22 @@ ListNode* removeZeroSumSublists(ListNode* head) {
         }
         return head;
 }
+
+//Problem 65 : Given a positive integer n, find the pivot integer x such that:
+//The sum of all elements between 1 and x inclusively equals the sum of all elements between x and n inclusively.
+//Return the pivot integer x. If no such integer exists, return -1. It is guaranteed that there will be at most one pivot index for the given input.
+int pivotInteger(int n) {
+        if(n==1) return n;
+        int s=(n*(n+1))/2;
+        for(int i=n/2;i<n;i++) {
+            int sum1ToX=(i*(i+1))/2;
+            int sumXToN=s-sum1ToX+i;
+            if(sum1ToX == sumXToN) 
+                return i;
+        }
+        return -1;
+}
+
 };
 
 
