@@ -1505,6 +1505,29 @@ vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInter
 
     return res;
 }
+
+
+//Problem 68 : You are given two linked lists: list1 and list2 of sizes n and m respectively.
+//Remove list1's nodes from the ath node to the bth node, and put list2 in their place.
+ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+    ListNode* lastNodeList2 = list2;
+    while (lastNodeList2->next) {
+        lastNodeList2 = lastNodeList2->next;
+    }
+    ListNode* tmp1 = list1;
+    b = b - a+3;
+    while (--a && tmp1) {
+        tmp1 = tmp1->next;
+    }
+    ListNode* tmp2 = tmp1;
+   
+    while (--b && tmp2) {
+        tmp2 = tmp2->next;
+    }
+    tmp1->next = list2;
+    lastNodeList2->next = tmp2;
+    return list1;
+}
 };
 
 
