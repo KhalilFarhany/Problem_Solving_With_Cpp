@@ -1558,6 +1558,28 @@ void reorderList(ListNode* head) {
             tmp=tmp->next;
         }
     }
+
+//Problem 71 : You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+//Merge all the linked-lists into one sorted linked-list and return it.
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+    if (lists.empty()) {
+        return nullptr;
+    }
+
+    multiset<int , greater<int>>mst;
+    for (int i = 0; i < lists.size(); i++) {
+        while (lists[i] != nullptr) {
+            mst.insert(lists[i]->val);
+            lists[i] = lists[i]->next;
+        }
+    }
+    ListNode* ans = nullptr;
+    for (multiset<int>::iterator it = mst.begin(); it != mst.end(); it++) {
+        ListNode* newNode = new ListNode(*it, ans);
+        ans = newNode;
+    }
+    return ans;
+}
 };
 
 
