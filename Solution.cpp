@@ -1528,6 +1528,36 @@ ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
     lastNodeList2->next = tmp2;
     return list1;
 }
+
+//Problem 70 : You are given the head of a singly linked-list. The list can be represented as:
+//L0 → L1 → … → Ln - 1 → Ln
+//Reorder the list to be on the following form:
+//L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+void reorderList(ListNode* head) {
+        ListNode* tmp=head;
+        vector<int>v1;
+        while(tmp != nullptr) {
+            v1.push_back(tmp->val);
+            tmp=tmp->next;
+        }
+
+        tmp=head;
+        int i=0;
+        int j=v1.size()-1;
+        bool test=true;
+        while(tmp != nullptr) {
+            if(test) {
+                tmp->val=v1[i];
+                i++;
+                test=false;
+            } else {
+                tmp->val=v1[j];
+                j--;
+                test=true;
+            }
+            tmp=tmp->next;
+        }
+    }
 };
 
 
