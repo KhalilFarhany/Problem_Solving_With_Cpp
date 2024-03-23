@@ -1580,6 +1580,20 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
     }
     return ans;
 }
+
+//Problem 72 : Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+bool isPalindrome(ListNode* head) {
+    ListNode* rev = nullptr;
+    for (ListNode* tmp = head; tmp != nullptr; tmp = tmp->next) {
+        ListNode* newNode = new ListNode(tmp->val, rev);
+        rev = newNode;
+    }
+
+    for (head,rev ; head != nullptr; head = head->next , rev=rev->next) {
+        if (rev->val != head->val) return false;
+    }
+    return true;
+}
 };
 
 
