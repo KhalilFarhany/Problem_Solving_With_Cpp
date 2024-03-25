@@ -1594,6 +1594,20 @@ bool isPalindrome(ListNode* head) {
     }
     return true;
 }
+
+//Problem 73 : Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears once or twice, return an array of all the integers that appears twice.
+//You must write an algorithm that runs in O(n) time and uses only constant extra space.
+vector<int> findDuplicates(vector<int>& nums) {
+        int arr[100001]={0};
+        vector<int>ans;
+        for(int i:nums) {
+            arr[i]++;
+            if(arr[i]==2) {
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
 };
 
 
