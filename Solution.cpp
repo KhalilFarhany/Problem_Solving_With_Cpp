@@ -1627,6 +1627,23 @@ int firstMissingPositive(vector<int> nums) {
     }
     return val;
    }
+
+////Problem 75 : Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
+int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        int n=nums.size();
+        int count = 0;
+        for(int i=0;i<n;i++) {
+            int s=1;
+            for(int j=i;j<n;j++) {
+                s*=nums[j];
+                if(s<k) count++;
+                else
+                break;
+            }
+        }
+        return count;
+}
+ 
 };
 
 
