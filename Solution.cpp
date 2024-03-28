@@ -1643,7 +1643,31 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         }
         return count;
 }
- 
+
+//Problem 76 : You are given an integer array nums and an integer k.
+//The frequency of an element x is the number of times it occurs in an array.
+//An array is called good if the frequency of each element in this array is less than or equal to k.
+//Return the length of the longest good subarray of nums.
+//A subarray is a contiguous non-empty sequence of elements within an array.
+int maxSubarrayLength(vector<int>& nums, int k) {
+        unordered_map<int, int>mp;
+        int n=nums.size();
+        int ans = 1;
+        int j=0;
+        int i=0;
+        while(i<n && j<n) {
+            mp[nums[j]]++;
+            while (mp[nums[j]]>k) {
+                mp[nums[i]]--;
+                i++;
+            }
+            ans = max(j-i+1, ans);
+            j++;
+        }
+            
+        return ans;
+    
+    }
 };
 
 
