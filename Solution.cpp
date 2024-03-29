@@ -1668,6 +1668,30 @@ int maxSubarrayLength(vector<int>& nums, int k) {
         return ans;
     
     }
+
+//Problem 78 : You are given an integer array nums and a positive integer k.
+//Return the number of subarrays where the maximum element of nums appears at least k times in that subarray.
+//A subarray is a contiguous sequence of elements within an array.
+long long countSubarrays(vector<int> &nums, int k) {
+        int mx = -1;
+        int n = nums.size();
+        for (int i :nums) {
+            mx = max(mx, i);
+        }
+        long long count = 0;
+        unordered_map<int, int>mp;
+        int i = 0, j = 0;
+        while (j < n) {
+            mp[nums[j]]++;
+            while (mp[mx] >= k) {
+                count += n - j;
+                mp[nums[i]]--;
+                i++;
+            }
+            j++;
+        }
+        return count;
+    }
 };
 
 
