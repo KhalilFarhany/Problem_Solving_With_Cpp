@@ -1692,6 +1692,62 @@ long long countSubarrays(vector<int> &nums, int k) {
         }
         return count;
     }
+
+
+//Problem 79 : Given an integer array nums and an integer k, return the number of good subarrays of nums.
+//A good array is an array where the number of different integers in that array is exactly k.
+//For example, [1,2,3,1,2] has 3 different integers: 1, 2, and 3.
+//A subarray is a contiguous part of an array.
+int subarraysWithKDistinct(vector<int>& nums, int k) {
+    int n = nums.size();
+    unordered_map<int, int> freq;
+    int left = 0, right = 0;
+    int goodSubarrays = 0;
+    int distinctCount = 0;
+
+    while (right < n) {
+        if (freq[nums[right]] == 0)
+            distinctCount++;
+        
+        freq[nums[right]]++;
+
+        while (distinctCount > k) {
+            freq[nums[left]]--;
+            if (freq[nums[left]] == 0)
+                distinctCount--;
+            left++;
+        }
+
+        goodSubarrays += right - left + 1;
+
+        right++;
+    }
+
+    left = 0;
+    right = 0;
+    distinctCount = 0;
+    freq.clear();
+
+    while (right < n) {
+        if (freq[nums[right]] == 0)
+            distinctCount++;
+        
+        freq[nums[right]]++;
+
+        while (distinctCount >= k) {
+            freq[nums[left]]--;
+            if (freq[nums[left]] == 0)
+                distinctCount--;
+            left++;
+        }
+
+        goodSubarrays -= right - left + 1;
+
+        right++;
+    }
+
+    return goodSubarrays;
+}
 };
 
 
