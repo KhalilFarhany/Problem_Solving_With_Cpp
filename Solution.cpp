@@ -1748,6 +1748,32 @@ int subarraysWithKDistinct(vector<int>& nums, int k) {
 
     return goodSubarrays;
 }
+//Problem 81 : Given two strings s and t, determine if they are isomorphic.
+//Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+//All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+bool isIsomorphic(string t, string s) {
+       if(s.length() != t.length()) return false;
+       map<char,char>mp;
+       map<char,char>mp2;
+       for(int i=0;i<t.length();i++) {
+           map<char,char>::iterator it = mp.find(s[i]);
+           map<char,char>::iterator it2 = mp2.find(t[i]);
+           if(it != mp.end()) {
+           if(mp[s[i]] != t[i])
+               return false;
+           } else {
+            mp.insert(make_pair(s[i],t[i]));
+           }
+
+           if(it2 != mp2.end()) {
+           if(mp2[t[i]] != s[i])
+               return false;
+           } else {
+            mp2.insert(make_pair(t[i],s[i]));
+           }
+       }
+       return true;
+    }
 };
 
 
