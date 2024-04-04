@@ -1774,6 +1774,20 @@ bool isIsomorphic(string t, string s) {
        }
        return true;
     }
+
+//problem 82 : 1614. Maximum Nesting Depth of the Parentheses
+int maxDepth(string s) {
+        int mx=0;
+        int count=0;
+        for(char c : s ) {
+            if(c == '(') {
+                count++;
+                mx=max(count,mx);
+            } else if(c == ')')
+                count--;
+        }
+        return mx;
+    }
 };
 
 
