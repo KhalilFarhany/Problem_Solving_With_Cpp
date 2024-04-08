@@ -1849,7 +1849,27 @@ string minRemoveToMakeValid(string ch) {
         }
         return ans;
     }
-    
+
+//Problem 85 : leetcode 1700. Number of Students Unable to Eat Lunch
+int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        int zeros=0,ones=0;
+        for(int i : students) {
+            if(i==0) zeros++;
+            else ones++;
+        }
+        for(int i :sandwiches) {
+            if(i == 0) {
+                if(zeros > 0) zeros--;
+                else return ones;
+            }
+            else if(i == 1) {
+                if(ones > 0) ones--;
+                else return zeros;
+            }
+        }
+        return 0;
+    }
+
 };
 
 
