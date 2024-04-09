@@ -1891,6 +1891,23 @@ int timeRequiredToBuy(vector<int>& tickets, int k) {
         }
         return count;
     }
+
+//Problem 87 : Write a function that takes the binary representation of a positive integer and returns the number of  set bits it has (also known as the Hamming weight).
+int hammingWeight(int n) {
+        long long val=1;
+        while(val<=n) {
+            val*=2;
+        }
+        int count=0;
+        while(n > 0) {
+            val/=2;
+            if(val<=n) {
+                n-=val;
+                count++;
+            }
+        }
+        return count;
+    }
 };
 
 
