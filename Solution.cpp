@@ -1870,6 +1870,27 @@ int countStudents(vector<int>& students, vector<int>& sandwiches) {
         return 0;
     }
 
+//Problem 86 : 2073. Time Needed to Buy Tickets
+int timeRequiredToBuy(vector<int>& tickets, int k) {
+        int n=tickets.size();
+        int count=0;
+        for(int i=0;i<n;i++) {
+            if(i<k) {
+                if(tickets[i]<=tickets[k]) {
+                    count+=tickets[i];
+                } else 
+                    count+=tickets[k];
+            }else if(i==k) {
+                count+=tickets[k];
+            } else {
+                if(tickets[i]<tickets[k]) {
+                    count+=tickets[i];
+                } else 
+                    count+=tickets[k]-1;
+            }
+        }
+        return count;
+    }
 };
 
 
