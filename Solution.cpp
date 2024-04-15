@@ -17,7 +17,7 @@ struct ListNode {
       TreeNode *right;
 };
 
-class Solution{
+class Solution {
   public:
 //problem 1: Find duplicates in an array
     vector<int> duplicates(long long arr[], int n) {
@@ -1909,7 +1909,7 @@ int hammingWeight(int n) {
         return count;
     }
 
-//Problem 87 : Given the root of a binary tree, return the sum of all left leaves.
+//Problem 88 : Given the root of a binary tree, return the sum of all left leaves.
 //A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
     int sumOfLeftLeaves(TreeNode* root) {
         if(root == nullptr) return 0;
@@ -1917,6 +1917,32 @@ int hammingWeight(int n) {
             return root->left->val + sumOfLeftLeaves(root->right);
         }
         return  sumOfLeftLeaves(root->left) + sumOfLeftLeaves(root->right);
+    }
+
+//Problem 89 : You are given the root of a binary tree containing digits from 0 to 9 only.
+//Each root-to-leaf path in the tree represents a number.
+//For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
+//Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+//A leaf node is a node with no children.
+void sumNum(TreeNode* root,string s,int &sum) {
+        if(root!=nullptr) {
+            
+            if(root->left==nullptr && root->right==nullptr) {
+                string r=s + char(root->val + '0');
+                sum+=stoi(r);
+            } else
+            {
+                s+=root->val + '0';
+                sumNum(root->left,s,sum);
+                sumNum(root->right,s,sum);
+            }
+        }
+    }
+int sumNumbers(TreeNode* root) {
+        int sum=0;
+        string s="";
+        sumNum(root,s,sum);
+        return sum;
     }
 };
 
