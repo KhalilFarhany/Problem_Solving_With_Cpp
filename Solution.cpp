@@ -2088,6 +2088,22 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return ans;
    }
+
+//problem 98: Given the head of a linked list, return the list after sorting it in ascending order.
+   ListNode* sortList(ListNode* head) {
+       multiset<int>st;
+       for (ListNode* tmp = head; tmp != nullptr; tmp = tmp->next) {
+           st.insert(tmp->val);
+       }
+       ListNode* tmp = head;
+       for (auto it = st.begin(); it != st.end(); it++) {
+           tmp->val = *it;
+           tmp = tmp->next;
+       }
+       return head;
+   }
+
+
 };
 
 
