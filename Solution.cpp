@@ -2079,6 +2079,15 @@ int islandPerimeter(vector<vector<int>>& grid) {
        str1 += word;
        return str1;
    }
+//problem 97: Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
+   int titleToNumber(string columnTitle) {
+       int n = columnTitle.size() - 1;
+       int ans = 0;
+       for (int i = 0; i < columnTitle.size(); i++) {
+           ans += (columnTitle[i] - 64) * pow(26, n--);
+       }
+       return ans;
+   }
 };
 
 
