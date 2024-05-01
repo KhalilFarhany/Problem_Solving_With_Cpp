@@ -2047,7 +2047,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
 // problem 94: Given an array intervals where intervals[i] = [li, ri] represent the interval [li, ri), remove all intervals that are covered by another interval in the list.
 // The interval[a, b) is covered by the interval[c, d) if and only if c <= a and b <= d.
-//  Return the number of remaining intervals.
+// Return the number of remaining intervals.
    int removeCoveredIntervals(vector<vector<int>>& intervals) {
        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) { return  a[0] == b[0] ? a[1] > b[1] : a[0] < b[0]; });
        int ans = intervals.size();
@@ -2059,6 +2059,25 @@ int islandPerimeter(vector<vector<int>>& grid) {
                curr = intervals[i][1];
        }
        return ans;
+   }
+
+// problem 96:  Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
+// For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3 (inclusive).The resulting string will be "dcbaefd".
+// Return the resulting string.
+   string reversePrefix(string word, char ch) {
+       string str1 = "";
+       int i = 0;
+       for (i = 0; i < word.size(); i++) {
+           str1 = word[i] + str1;
+           if (word[i] == ch) {
+               break;
+           }
+       }
+       if (i >= word.size())
+           return word;
+       word = word.substr(i + 1);
+       str1 += word;
+       return str1;
    }
 };
 
