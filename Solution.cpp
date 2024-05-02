@@ -2061,7 +2061,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return ans;
    }
 
-// problem 96:  Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
+// problem 95:  Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
 // For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3 (inclusive).The resulting string will be "dcbaefd".
 // Return the resulting string.
    string reversePrefix(string word, char ch) {
@@ -2079,7 +2079,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
        str1 += word;
        return str1;
    }
-//problem 97: Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
+//problem 96: Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
    int titleToNumber(string columnTitle) {
        int n = columnTitle.size() - 1;
        int ans = 0;
@@ -2089,7 +2089,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return ans;
    }
 
-//problem 98: Given the head of a linked list, return the list after sorting it in ascending order.
+//problem 97: Given the head of a linked list, return the list after sorting it in ascending order.
    ListNode* sortList(ListNode* head) {
        multiset<int>st;
        for (ListNode* tmp = head; tmp != nullptr; tmp = tmp->next) {
@@ -2103,6 +2103,16 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return head;
    }
 
+//problem 98: Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k also exists in the array.
+//Return the positive integer k.If there is no such integer, return -1.
+   int findMaxK(vector<int>& nums) {
+       sort(nums.begin(), nums.end());
+       for (int i = nums.size() - 1; i >= 0 && nums[i] > 0; i--) {
+           if (find(nums.begin(), nums.end(), -(nums[i])) != nums.end())
+               return nums[i];
+       }
+       return -1;
+   }
 
 };
 
