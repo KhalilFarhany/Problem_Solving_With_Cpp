@@ -2161,6 +2161,48 @@ int islandPerimeter(vector<vector<int>>& grid) {
            j++;
        }
        return 0;
+
+//problem 100 : check is last day in month ?
+       bool isLeapYear(int year) {
+           if (year % 4 == 0) {
+               if (year % 100 == 0) {
+                   if (year % 400 == 0) {
+                       return true;
+                   }
+                   else {
+                       return false;
+                   }
+               }
+               else {
+                   return true;
+               }
+           }
+           else {
+               return false;
+           }
+       }
+
+       int numberOfDaysInMonth(int month, int year) {
+           if (month < 1 || month < 12)
+               return 0;
+           int months[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+
+           if (isLeapYear(year))
+               months[1]++;
+
+           return months[month - 1];
+       }
+
+       bool isLastDayInMonth(int day, int month, int year) {
+           return(day == numberOfDaysInMonth(month, year));
+       }
+
+       bool isLastMonthInYear(int month) {
+           return (month == 12);
+
+}
+
+
 };
 
 
