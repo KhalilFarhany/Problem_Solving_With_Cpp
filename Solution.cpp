@@ -2202,6 +2202,25 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
 }
 
+//problem 101 : increase date by one day 
+       struct stDate
+       {
+           int day, month, year;
+       };
+       void increaseDateByOneDay(stDate date) {
+           if (isLastDayInMonth(date.day, date.month, date.year)) {
+               if (isLastMonthInYear(date.month)) {
+                   date.year++;
+                   date.month = 1;
+               }
+               else
+                   date.month++;
+
+               date.day = 1;
+           }
+           else
+               date.day++;
+       }
 
 };
 
