@@ -564,7 +564,7 @@ ListNode* removeElements(ListNode* head, int val) {
             head2=tmp;
         }
         return head2;
-    }
+ }
 
 
 //Problem 24 (method 2):  You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
@@ -2232,6 +2232,27 @@ int islandPerimeter(vector<vector<int>>& grid) {
                else
                    node = node->next;
            }
+       }      
+
+// problem 103 : You are given the head of a linked list ,Remove every node which has a node with a greater value anywhere to the right side of it.
+// Return the head of the modified linked list. 237. Delete Node in a Linked List
+   ListNode* removeNodes(ListNode* head) {
+           head = reverseList(head);
+           ListNode* curr = head->next;
+           ListNode* prev = head;
+           while (curr) {
+               if (curr->val < prev->val) {
+                   curr = curr->next;
+                   delete prev->next;
+                   prev->next = curr;
+               }
+               else
+               {
+                   prev = curr;
+                   curr = curr->next;
+               }
+           }
+           return reverseList(head);
        }
 };
 
