@@ -2254,6 +2254,24 @@ int islandPerimeter(vector<vector<int>>& grid) {
            }
            return reverseList(head);
        }
+//problem 104 : Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+//A subsequence of a string is a new string that is formed from the original string by deleting some(can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+   bool isSubsequence(string sub, string orig) {
+       if (orig.length() < sub.length())
+           return false;
+       int i = 0;
+       int j = 0;
+       while (i < orig.length() && j < sub.size()) {
+           if (orig[i] == sub[j]) {
+               j++;
+           }
+           i++;
+       }
+       if (j >= sub.size())
+           return true;
+       return false;
+   }
+
 };
 
 
