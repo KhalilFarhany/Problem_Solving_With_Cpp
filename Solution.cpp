@@ -2292,6 +2292,46 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return sum;
    }
+
+// Problem 106 : You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+// Return the head of the linked list after doubling it.
+   ListNode* doubleIt(ListNode* head) {
+       string str = "";
+       ListNode* tmp = head;
+       while (tmp) {
+           str += (tmp->val + 48);
+           tmp = tmp->next;
+       }
+       int rest = 0;
+       for (int i = str.length() - 1; i >= 0; i--) {
+           int val = (str[i] - '0');
+           val = (val * 2) + rest;
+           rest = val / 10;
+           if (rest > 0) {
+               val = val % 10;
+           }
+           str[i] = (val + 48);
+       }
+       if (rest > 0) {
+           str = "1" + str;
+       }
+       tmp = head;
+       ListNode* prev = nullptr;
+       int i = 0;
+       while (i < str.length()) {
+           tmp->val = (str[i] - '0');
+           prev = tmp;
+           tmp = tmp->next;
+           if (tmp == nullptr && i + 1 < str.size()) {
+               tmp = new ListNode(str[++i] - 48);
+               prev->next = tmp;
+               break;
+           }
+           i++;
+       }
+
+       return head;
+   }
 };
 
 
