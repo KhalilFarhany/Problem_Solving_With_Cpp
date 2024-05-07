@@ -2329,7 +2329,6 @@ int islandPerimeter(vector<vector<int>>& grid) {
            }
            i++;
        }
-
        return head;
    }
 };
