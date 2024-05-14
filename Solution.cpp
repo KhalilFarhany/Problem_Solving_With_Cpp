@@ -2494,6 +2494,28 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
        return mx;
    }
+
+   // problem 114 : Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
+   // The graph is given as follows : graph[i] is a list of all nodes you can visit from node i(i.e., there is a directed edge from node i to node graph[i][j]).
+   void dfs(vector<vector<int>> graph, int pos, vector<int>v, vector<vector<int>>& ans) {
+       for (int i = 0; i < graph[pos].size(); i++) {
+           v.push_back(graph[pos][i]);
+           if (graph[pos][i] == graph.size() - 1) {
+               ans.push_back(v);
+           }
+           else
+               dfs(graph, graph[pos][i], v, ans);
+           v.pop_back();
+       }
+       return;
+   }
+   vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+       vector<int>v;
+       v.push_back(0);
+       vector<vector<int>> ans;
+       dfs(graph, 0, v, ans);
+       return ans;
+   }
 };
 
 
