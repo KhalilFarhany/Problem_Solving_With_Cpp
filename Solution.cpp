@@ -2457,6 +2457,43 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return ans;
    }
+
+   // problem 113 : In a gold mine grid of size m x n, each cell in this mine has an integer representing the amount of gold in that cell, 0 if it is empty.
+   // Return the maximum amount of gold you can collect under the conditions :
+   // Every time you are located in a cell you will collect all the gold in that cell. From your position, you can walk one step to the left, right, up, or down. You can't visit the same cell more than once. Never visit a cell with 0 gold. You can start and stop collecting gold from any position in the grid that has some gold.
+   void solveMaxGold(vector<vector<int>>& grid, int i, int j, int n, int m, int sum, int& mx, vector<vector<bool>>& used) {
+       if (i < 0 || i >= n || j < 0 || j >= m || grid[i][j] == 0 || used[i][j]) {
+           return;
+       }
+
+       sum += grid[i][j];
+       used[i][j] = true;
+       mx = max(mx, sum);
+
+       solveMaxGold(grid, i - 1, j, n, m, sum, mx, used);
+       solveMaxGold(grid, i + 1, j, n, m, sum, mx, used);
+       solveMaxGold(grid, i, j - 1, n, m, sum, mx, used);
+       solveMaxGold(grid, i, j + 1, n, m, sum, mx, used);
+
+       used[i][j] = false;
+   }
+
+   int getMaximumGold(vector<vector<int>>& grid) {
+       int mx = 0;
+       int n = grid.size();
+       int m = grid[0].size();
+
+       for (int i = 0; i < n; i++) {
+           for (int j = 0; j < m; j++) {
+               if (grid[i][j] != 0) {
+                   vector<vector<bool>> used(n, vector<bool>(m, false));
+                   solveMaxGold(grid, i, j, n, m, 0, mx, used);
+               }
+           }
+       }
+
+       return mx;
+   }
 };
 
 
