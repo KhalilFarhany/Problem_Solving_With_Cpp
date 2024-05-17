@@ -2559,6 +2559,32 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
        return root;
    }
+
+   //  problem 117 : Given the root of a binary tree, return the sum of values of its deepest leaves.
+   void dfsManip(TreeNode* root, int& val, int& max, int& sum) {
+       if (root != nullptr) {
+           val++;
+           if (val > max) {
+               sum = root->val;
+               max = val;
+           }
+           else if (val == max) {
+               sum += root->val;
+           }
+           dfsManip(root->left, val, max, sum);
+
+           dfsManip(root->right, val, max, sum);
+           val--;
+       }
+   }
+
+   int deepestLeavesSum(TreeNode* root) {
+       int sum = 0;
+       int val = 0;
+       int max = 0;
+       dfsManip(root, val, max, sum);
+       return sum;
+   }
 };
 
 
