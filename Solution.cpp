@@ -2531,8 +2531,33 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
        if (root->val == 3)
            return evaluateTree(root->left) && evaluateTree(root->right);
-
        return true;
+   }
+
+   // problem 116 : Given a binary tree root and an integer target, delete all the leaf nodes with value target.
+   // Note that once you delete a leaf node with value target, if its parent node becomes a leaf node and has the value target, it should also be deleted(you need to continue doing that until you cannot).
+   void solveRemoveLeafNodes(bool left, bool right, TreeNode* parent, TreeNode* root, int target) {
+       if (root != nullptr) {
+           solveRemoveLeafNodes(true, false, root, root->left, target);
+           solveRemoveLeafNodes(false, true, root, root->right, target);
+           if (root->left == nullptr && root->right == nullptr && root->val == target) {
+               if (parent != nullptr) {
+                   if (left)
+                       parent->left = nullptr;
+                   else
+                       parent->right = nullptr;
+                   delete root;
+               }
+           }
+       }
+   }
+   TreeNode* removeLeafNodes(TreeNode* root, int target) {
+       solveRemoveLeafNodes(false, false, nullptr, root, target);
+       if (root->left == nullptr && root->right == nullptr && root->val == target) {
+           return nullptr;
+       }
+
+       return root;
    }
 };
 
