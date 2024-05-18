@@ -2585,6 +2585,37 @@ int islandPerimeter(vector<vector<int>>& grid) {
        dfsManip(root, val, max, sum);
        return sum;
    }
+
+   // problem 118 : Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average of the values in its subtree.
+   // Note : The average of n elements is the sum of the n elements divided by n and rounded down to the nearest integer. A subtree of root is a tree consisting of root and all of its descendants.
+   int sumAndLenTree(TreeNode* root, int& len) {
+       if (root != nullptr) {
+           len++;
+           return root->val + sumAndLenTree(root->left, len) + sumAndLenTree(root->right, len);
+       }
+       else
+           return 0;
+
+   }
+   void dfsAverageOfSubtree(TreeNode* root, vector<TreeNode*>& v) {
+       if (root != nullptr) {
+           v.push_back(root);
+           dfsAverageOfSubtree(root->left, v);
+           dfsAverageOfSubtree(root->right, v);
+       }
+   }
+   int averageOfSubtree(TreeNode* root) {
+       vector<TreeNode*>v;
+       dfsAverageOfSubtree(root, v);
+       int count = 0;
+       for (TreeNode* it : v) {
+           int len = 0;
+           int sum = sumAndLenTree(it, len);
+           if (sum / len == it->val)
+               count++;
+       }
+       return count;
+   }
 };
 
 
