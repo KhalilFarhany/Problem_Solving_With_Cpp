@@ -2616,6 +2616,26 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return count;
    }
+
+   // problem 119 : Given an integer array nums of unique elements, return all possible 
+   // subsets (the power set). The solution set must not contain duplicate subsets.Return the solution in any order.
+   vector<vector<int>> subsets(vector<int>& nums) {
+       vector<vector<int>> ans;
+       ans.push_back({});
+
+       for (int i : nums) {
+           vector<vector<int>>newSubsts;
+           for (vector<int> j : ans) {
+               vector<int>v = j;
+               j.push_back(i);
+               newSubsts.push_back(j);
+           }
+           for (vector<int> j : newSubsts) {
+               ans.push_back(j);
+           }
+       }
+       return ans;
+   }
 };
 
 
