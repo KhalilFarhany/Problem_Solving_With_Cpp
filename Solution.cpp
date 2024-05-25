@@ -2636,6 +2636,31 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return ans;
    }
+
+   // problem 120 : You have n  tiles, where each tile has one letter tiles[i] printed on it. 
+   // Return the number of possible non - empty sequences of letters you can make using the letters printed on those tiles.
+   void backtraking1079(string tiles, vector<bool>& used, string& s, set<string>& res) {
+       if (s != "") {
+           res.insert(s);
+       }
+       for (int i = 0; i < tiles.size(); i++) {
+           if (used[i] == 0) {
+               used[i] = 1;
+               s.push_back(tiles[i]);
+               backtraking1079(tiles, used, s, res);
+               s.pop_back();
+               used[i] = 0;
+           }
+       }
+   }
+   int numTilePossibilities(string tiles) {
+       vector<bool>used(tiles.size(), false);
+       string s = "";
+       set<string>res;
+       backtraking1079(tiles, used, s, res);
+       return res.size();
+   }
+
 };
 
 
