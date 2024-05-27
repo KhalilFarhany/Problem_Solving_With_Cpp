@@ -2662,7 +2662,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return res.size();
    }
 
-   // problem 120 : Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+   // problem 121 : Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
    void backtraking46(vector<int>nums, vector<bool>used, vector<int>& v, vector<vector<int>>& ans) {
        if (v.size() == nums.size()) {
            ans.push_back(v);
@@ -2682,6 +2682,32 @@ int islandPerimeter(vector<vector<int>>& grid) {
        vector<int>v;
        vector<vector<int>>ans;
        backtraking46(nums, used, v, ans);
+       return ans;
+   }
+
+
+   void backtraking47(vector<int>nums, vector<bool>used, vector<int>& v, set<vector<int>>& ans) {
+       if (v.size() == nums.size()) {
+           ans.insert(v);
+       }
+       for (int i = 0; i < nums.size(); i++) {
+           if (!used[i]) {
+               used[i] = true;
+               v.push_back(nums[i]);
+               backtraking46(nums, used, v, ans);
+               used[i] = false;
+               v.pop_back();
+           }
+       }
+   }
+
+    //problem 122 : Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
+   vector<vector<int>> permuteUnique(vector<int>& nums) {
+       vector<bool>used(nums.size(), false);
+       vector<int>v;
+       set<vector<int>>res;
+       backtraking46(nums, used, v, res);
+       vector<vector<int>> ans(res.begin(), res.end());
        return ans;
    }
 
