@@ -2653,12 +2653,36 @@ int islandPerimeter(vector<vector<int>>& grid) {
            }
        }
    }
+
    int numTilePossibilities(string tiles) {
        vector<bool>used(tiles.size(), false);
        string s = "";
        set<string>res;
        backtraking1079(tiles, used, s, res);
        return res.size();
+   }
+
+   // problem 120 : Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+   void backtraking46(vector<int>nums, vector<bool>used, vector<int>& v, vector<vector<int>>& ans) {
+       if (v.size() == nums.size()) {
+           ans.push_back(v);
+       }
+       for (int i = 0; i < nums.size(); i++) {
+           if (!used[i]) {
+               used[i] = true;
+               v.push_back(nums[i]);
+               backtraking46(nums, used, v, ans);
+               used[i] = false;
+               v.pop_back();
+           }
+       }
+   }
+   vector<vector<int>> permute(vector<int>& nums) {
+       vector<bool>used(nums.size(), false);
+       vector<int>v;
+       vector<vector<int>>ans;
+       backtraking46(nums, used, v, ans);
+       return ans;
    }
 
 };
