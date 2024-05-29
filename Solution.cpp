@@ -2711,6 +2711,45 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return ans;
    }
 
+   // problem 123 : Given the binary representation of an integer as a string s, return the number of steps to reduce it to 1 under the following rules:
+   // If the current number is even, you have to divide it by 2. If the current number is odd, you have to add 1 to it. It is guaranteed that you can always reach one for all test cases.
+   void divideByTwo(string& s) {
+       s.pop_back();
+   }
+
+   void addOne(string& s) {
+       int i = s.size() - 1;
+       while (i >= 0 && s[i] != '0') {
+           s[i] = '0';
+           i--;
+       }
+       if (i < 0) {
+           s = '1' + s;
+       }
+       else {
+           s[i] = '1';
+       }
+   }
+
+   int numSteps(string s) {
+       int N = s.size();
+
+       int operations = 0;
+       while (s.size() > 1) {
+           N = s.size();
+
+           if (s[N - 1] == '0') {
+               divideByTwo(s);
+           }
+           else {
+               addOne(s);
+           }
+
+           operations++;
+       }
+
+       return operations;
+   }
 };
 
 
