@@ -2767,6 +2767,28 @@ int islandPerimeter(vector<vector<int>>& grid) {
            ans.push_back(nums[n - 1]);
        return ans;
    }
+
+
+   // problem 125 : You are given a string moves of length n consisting only of characters 'L', 'R', and '_'. The string represents your movement on a number line starting from the origin 0.
+   // In the ith move, you can choose one of the following directions : move to the left if moves[i] = 'L' or moves[i] = '_' , move to the right if moves[i] = 'R' or moves[i] = '_' 
+   // Return the distance from the origin of the furthest point you can get to after n moves.
+   int furthestDistanceFromOrigin(string moves) {
+       int count_ = 0;
+       int distance = 0;
+       for (char& c : moves) {
+           if (c == 'L')
+               distance--;
+           else if (c == 'R')
+               distance++;
+           else
+               count_++;
+       }
+       if (distance < 0)
+           distance += -count_;
+       else
+           distance += count_;
+       return abs(distance);
+   }
 };
 
 
