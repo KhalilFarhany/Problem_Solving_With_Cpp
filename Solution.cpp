@@ -2750,6 +2750,23 @@ int islandPerimeter(vector<vector<int>>& grid) {
 
        return operations;
    }
+
+   // problem 124 : Given an integer array nums, in which exactly two elements appear only once and all the other elements appear exactly twice.Find the two elements that appear only once.You can return the answer in any order.
+   // You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
+   vector<int> singleNumber3(vector<int>& nums) {
+       vector<int> ans;
+       int n = nums.size();
+       sort(nums.begin(), nums.end());
+       for (int i = 0; i < n - 1; i++) {
+           if (nums[i] != nums[i + 1])
+               ans.push_back(nums[i]);
+           else
+               i++;
+       }
+       if (nums[n - 1] != nums[n - 2])
+           ans.push_back(nums[n - 1]);
+       return ans;
+   }
 };
 
 
