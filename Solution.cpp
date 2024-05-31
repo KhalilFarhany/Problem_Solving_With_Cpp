@@ -2789,6 +2789,21 @@ int islandPerimeter(vector<vector<int>>& grid) {
            distance += count_;
        return abs(distance);
    }
+
+
+   // problem 126 : You are given an integer array pref of size n. Find and return the array arr of size n that satisfies:
+   // pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i].
+   // Note that ^ denotes the bitwise - xor operation. It can be proven that the answer is unique.
+   vector<int> findArray(vector<int>& pref) {
+       vector<int>ans;
+       ans.push_back(pref[0]);
+       for (int i = 1; i < pref.size(); i++) {
+           ans.push_back(pref[i] ^ pref[i - 1]);
+       }
+       return ans;
+   }
+
+
 };
 
 
