@@ -2895,6 +2895,42 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return head;
    }
+
+   //problem 132 : Given the head of a linked list, rotate the list to the right by k places.
+   ListNode* rotateRight(ListNode* head, int k) {
+       if (head == nullptr || head->next == nullptr || k == 0) {
+           return head;
+       }
+       int size = 0;
+       for (ListNode* tmp = head; tmp != nullptr; tmp = tmp->next) {
+           size++;
+       }
+       if (k >= size) {
+           k %= size;
+       }
+       if (k == 0) {
+           return head;
+       }
+
+       k = size - k;
+       ListNode* curr = head;
+       ListNode* prev = nullptr;
+
+
+       while (k--) {
+           prev = curr;
+           curr = curr->next;
+       }
+
+       prev->next = nullptr;
+       ListNode* tmp = curr;
+       while (tmp->next) {
+           tmp = tmp->next;
+       }
+       tmp->next = head;
+       head = curr;
+       return head;
+   }
 };
 
 
