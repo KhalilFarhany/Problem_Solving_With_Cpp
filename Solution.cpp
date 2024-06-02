@@ -2869,6 +2869,32 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return ans;
    }
 
+   // problem 131 : Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
+   ListNode* deleteDuplicates2(ListNode* head) {
+       ListNode* tmp = head;
+       ListNode* prev = nullptr;
+       while (tmp) {
+           int val = tmp->val;
+           if (tmp->next && tmp->next->val == val) {
+               while (tmp && tmp->val == val) {
+                   ListNode* curr = tmp;
+                   tmp = tmp->next;
+                   delete curr;
+               }
+               if (prev == nullptr) {
+                   head = tmp;
+               }
+               else {
+                   prev->next = tmp;
+               }
+           }
+           else {
+               prev = tmp;
+               tmp = tmp->next;
+           }
+       }
+       return head;
+   }
 };
 
 
