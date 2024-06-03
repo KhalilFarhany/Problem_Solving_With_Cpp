@@ -2931,6 +2931,21 @@ int islandPerimeter(vector<vector<int>>& grid) {
        head = curr;
        return head;
    }
+
+   // problem 133 : You are given two strings s and t consisting of only lowercase English letters.
+   // Return the minimum number of characters that need to be appended to the end of s so that t becomes a subsequence of s. A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+   int appendCharacters(string s, string t) {
+       if (s.find(t) != string::npos) {
+           return 0;
+       }
+       int j = 0;
+       for (int i = 0; i < s.length(); i++) {
+           if (s[i] == t[j]) {
+               j++;
+           }
+       }
+       return (t.substr(j)).length();
+   }
 };
 
 
