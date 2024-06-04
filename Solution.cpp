@@ -2946,6 +2946,33 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return (t.substr(j)).length();
    }
+
+   // problem 134 : Given a string s which consists of lowercase or uppercase letters, return the length of the longest 
+   // palindrome that can be built with those letters. Letters are case sensitive, for example, "Aa" is not considered a palindrome.
+   int longestPalindrome(string s) {
+       vector<int>v(52, 0);
+       for (int i = 0; i < s.length(); i++) {
+           if (s[i] < 91) {
+               v[s[i] - 65]++;
+           }
+           else
+               v[s[i] - 97 + 26]++;
+       }
+       int maxOdd = 0;
+       int ans = 0;
+       bool hasOdd = false;
+       for (int& i : v) {
+           if (i % 2 == 0) {
+               ans += i;
+           }
+           else {
+               ans += i - 1;
+               hasOdd = true;
+           }
+
+       }
+       return (ans + (hasOdd ? 1 : 0));
+   }
 };
 
 
