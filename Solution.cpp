@@ -2992,6 +2992,36 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return ans;
    }
+
+   // problem 136 :  Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.
+   vector<string> commonChars(vector<string>& words) {
+       string smWord = words[0];
+       vector<string>ans;
+       for (int i = 1; i < words.size(); i++) {
+           if (words[i].length() < smWord.length()) {
+               smWord = words[i];
+           }
+       }
+       for (int i = 0; i < smWord.length(); i++) {
+           char c = smWord[i];
+           bool test = true;
+           for (string& s : words) {
+               int pos = s.find(c);
+               if (pos == string::npos) {
+                   test = false;
+                   break;
+               }
+               else
+                   s[pos] = '*';
+           }
+           if (test) {
+               string str = "";
+               str += c;
+               ans.push_back(str);
+           }
+       }
+       return ans;
+   }
 };
 
 
