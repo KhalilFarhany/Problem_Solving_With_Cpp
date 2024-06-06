@@ -3022,6 +3022,41 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return ans;
    }
+
+   // problem 137 : Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size groupSize, and consists of groupSize consecutive cards.
+   // Given an integer array hand where hand[i] is the value written on the ith card and an integer groupSize, return true if she can rearrange the cards, or false otherwise.
+   bool isNStraightHand(vector<int>hand, int groupSize) {
+       if (hand.size() % groupSize != 0)
+           return false;
+
+       if (groupSize == 1)
+           return true;
+
+       int nb = hand.size() / groupSize;
+       sort(hand.begin(), hand.end());
+       int count = 1;
+       int val = hand[0];
+       while (true) {
+           if (count == groupSize) {
+               nb--;
+               if (nb == 0) {
+                   break;
+               }
+               count = 1;
+               val = hand[1];
+               hand.erase(hand.begin() + 1);
+           }
+           auto it = find(hand.begin(), hand.end(), val + 1);
+           if (it != hand.end()) {
+               val++;
+               count++;
+               hand.erase(it);
+           }
+           else
+               return false;
+       }
+       return true;
+   }
 };
 
 
