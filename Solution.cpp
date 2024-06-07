@@ -3057,6 +3057,36 @@ int islandPerimeter(vector<vector<int>>& grid) {
        }
        return true;
    }
+   
+   // problem 137 : In English, we have a concept called root, which can be followed by some other word to form another longer word - let's call this word derivative. For example, when the root "help" is followed by the word "ful", we can form a derivative "helpful".
+   // Given a dictionary consisting of many roots and a sentence consisting of words separated by spaces, replace all the derivatives in the sentence with the root forming it.If a derivative can be replaced by more than one root, replace it with the root that has the shortest length. Return the sentence after the replacement.
+   string replaceWords(vector<string>& dictionary, string sentence) {
+       unordered_set<string> st(dictionary.begin(), dictionary.end());
+
+       string ans = "";
+       int i = 0;
+       while (i < sentence.length()) {
+           string word = "";
+           bool skip = false;
+           while (i < sentence.length() && sentence[i] != ' ') {
+               if (skip) {
+                   i++;
+                   continue;
+               }
+               word += sentence[i++];
+               if (st.find(word) != st.end()) {
+                   skip = true;
+               }
+           }
+           ans += word;
+           if (i < sentence.length() && sentence[i] == ' ') {
+               ans += " ";
+           }
+           i++;
+       }
+       return ans;
+   }
+
 };
 
 
