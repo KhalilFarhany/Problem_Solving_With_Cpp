@@ -3058,7 +3058,7 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return true;
    }
    
-   // problem 137 : In English, we have a concept called root, which can be followed by some other word to form another longer word - let's call this word derivative. For example, when the root "help" is followed by the word "ful", we can form a derivative "helpful".
+   // problem 138 : In English, we have a concept called root, which can be followed by some other word to form another longer word - let's call this word derivative. For example, when the root "help" is followed by the word "ful", we can form a derivative "helpful".
    // Given a dictionary consisting of many roots and a sentence consisting of words separated by spaces, replace all the derivatives in the sentence with the root forming it.If a derivative can be replaced by more than one root, replace it with the root that has the shortest length. Return the sentence after the replacement.
    string replaceWords(vector<string>& dictionary, string sentence) {
        unordered_set<string> st(dictionary.begin(), dictionary.end());
@@ -3085,6 +3085,21 @@ int islandPerimeter(vector<vector<int>>& grid) {
            i++;
        }
        return ans;
+   }
+
+   // problem 139 : A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+   // You are given an integer array heights representing the current order that the students are standing in.Each heights[i] is the height of the ith student in line(0 - indexed).
+   // Return the number of indices where heights[i] != expected[i].
+   int heightChecker(vector<int>& heights) {
+       vector<int> expected(heights.begin(), heights.end());
+       int count = 0;
+       sort(expected.begin(), expected.end());
+       for (int i = 0; i < heights.size(); i++) {
+           if (expected[i] != heights[i]) {
+               count++;
+           }
+       }
+       return count;
    }
 
 };
