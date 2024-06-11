@@ -3102,6 +3102,31 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return count;
    }
 
+   // problem 139 : Given two arrays arr1 and arr2, the elements of arr2 are distinct, and all elements in arr2 are also in arr1.
+   // Sort the elements of arr1 such that the relative ordering of items in arr1 are the same as in arr2.Elements that do not appear in arr2 should be placed at the end of arr1 in ascending order.
+   vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+       vector<bool>used(arr1.size(), false);
+       vector<int>ans;
+       for (int i = 0; i < arr2.size(); i++) {
+           for (int j = 0; j < arr1.size(); j++) {
+               if (arr2[i] == arr1[j]) {
+                   ans.push_back(arr2[i]);
+                   used[j] = true;
+               }
+           }
+       }
+       multiset<int>st;
+       for (int j = 0; j < used.size(); j++) {
+           if (!used[j]) {
+               st.insert(arr1[j]);
+           }
+       }
+       for (auto it = st.begin(); it != st.end(); it++) {
+           ans.push_back(*it);
+       }
+       return ans;
+   }
+
 };
 
 
