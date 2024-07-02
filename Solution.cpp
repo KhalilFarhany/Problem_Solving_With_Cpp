@@ -3143,6 +3143,23 @@ int islandPerimeter(vector<vector<int>>& grid) {
        return false;
    }
 
+   // problem 142 : Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+   vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+       unordered_map<int, int>occ;
+       vector<int>v;
+       for (int i : nums1) {
+           occ[i]++;
+       }
+       for (int i : nums2) {
+           if (occ[i] > 0)
+           {
+               v.push_back(i);
+               occ[i]--;
+           }
+       }
+       return v;
+   }
+
 };
 
 
